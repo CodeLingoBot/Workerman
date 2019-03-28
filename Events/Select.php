@@ -118,7 +118,7 @@ class Select implements EventInterface
                 $count = $flag === self::EV_READ ? count($this->_readFds) : count($this->_writeFds);
                 if ($count >= 1024) {
                     echo "Warning: system call select exceeded the maximum number of connections 1024, please install event/libevent extension for more connections.\n";
-                } else if (DIRECTORY_SEPARATOR !== '/' && $count >= 256) {
+                } elseif (DIRECTORY_SEPARATOR !== '/' && $count >= 256) {
                     echo "Warning: system call select exceeded the maximum number of connections 256.\n";
                 }
                 $fd_key                           = (int)$fd;

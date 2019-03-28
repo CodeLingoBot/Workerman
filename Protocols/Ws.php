@@ -199,8 +199,7 @@ class Ws
             } else {
                 $connection->websocketCurrentFrameLength = $current_frame_length;
             }
-        }
-        // Received just a frame length data.
+        }       // Received just a frame length data.
         if ($connection->websocketCurrentFrameLength === $recv_len) {
             self::decode($buffer, $connection);
             $connection->consumeRecvBuffer($connection->websocketCurrentFrameLength);
@@ -244,7 +243,7 @@ class Ws
         if (65535 < $length) {
             $pack   = pack('NN', ($length & 0xFFFFFFFF00000000) >> 32, $length & 0x00000000FFFFFFFF);
             $length_flag = 127;
-        } else if (125 < $length) {
+        } elseif (125 < $length) {
             $pack   = pack('n*', $length);
             $length_flag = 126;
         }
@@ -306,7 +305,7 @@ class Ws
 
         if ($data_length === 126) {
             $decoded_data = substr($bytes, 4);
-        } else if ($data_length === 127) {
+        } elseif ($data_length === 127) {
             $decoded_data = substr($bytes, 10);
         } else {
             $decoded_data = substr($bytes, 2);

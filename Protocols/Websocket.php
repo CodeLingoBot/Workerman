@@ -202,7 +202,6 @@ class Websocket implements \Workerman\Protocols\ProtocolInterface
                 $connection->websocketCurrentFrameLength = $current_frame_length;
             }
         }
-
         // Received just a frame length data.
         if ($connection->websocketCurrentFrameLength === $recv_len) {
             static::decode($buffer, $connection);
